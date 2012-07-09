@@ -1,0 +1,117 @@
+$drag-handle-diameter: 18px;
+
+.pg_overlay{
+    background: image_url("popup_gallery_bg.png") repeat #C7C7C7;
+}
+.pg_header_container{
+    font-size: 16px;
+    min-height: 1em;
+    z-index: 1;
+    color: white;    
+}
+.pg_header{
+    min-height: 1em;
+    padding: 1em;
+    background: #333;
+    background-color: rgba(30, 30, 30, 0.8);
+    text-align: left;
+}
+.pg_header_right{
+    float:right;
+}
+.pg_exit_button{
+    display: inline-block;
+    margin-left: 1em;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    background: image_url("popup_gallery_close_button.png") no-repeat scroll right center;
+}
+.pg_zoom_readout{
+    margin-left: 1em;
+    vertical-align: middle;
+}
+.pg_zoom_range{
+    background: none repeat scroll 0 0 #EEEEEE;
+    display: inline-block;
+    height: 4px;
+    margin-left: 1em;
+    position: relative;
+    vertical-align: middle;
+    width: 170px;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) inset;
+}
+.ui-slider-horizontal .ui-slider-handle{
+    display: inline-block;
+    position: relative;
+    height: $drag-handle-diameter;
+    width: $drag-handle-diameter;
+    background: #AAA;
+    border: 2px solid white;
+    border-radius: 15px;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.5) inset, 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-left: $drag-handle-diameter / -2 - 2px ;
+    top: 8px - $drag-handle-diameter;
+    cursor: move;
+}
+.pg_header_shadow{
+    position: absolute;
+    background: image_url("popup_gallery_header_shadow.png") bottom;
+    width: 100%;
+    height: 10px;
+}
+.pg_view_window canvas{
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+}
+.pg_view_window canvas:active{
+    cursor: move;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+}
+.pg_carousel{
+    position: absolute;
+    left: 1em;
+    margin-top: 1em;
+}
+.pg_carousel_images{
+    img{
+        height: 100px;
+	    padding: 2px;
+	    background: white;
+	    margin: 2px;
+	    border: 1px solid #E0E0E0;
+	    border-bottom-color:  #AAAAAA;
+	    border-radius: 2px;        
+        cursor: pointer;
+        vertical-align: middle;
+    }
+    img.selected{
+        background-color: #2974DF;
+        box-shadow: 0 0 10px #2974DF;
+        border-color: #2974DF;
+    }
+}
+.pg_loading_indicator{
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+}
+.pg_copyright{
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    
+    img{
+        vertical-align: middle;
+    }
+}

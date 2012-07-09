@@ -6,16 +6,16 @@ A Canvas powered Javascript image gallery
 installation
 ------------
 
-# In Gemfile
+### In Gemfile
 gem 'popup_gallery'
 group :assets do
   gem 'jquery-ui-rails'
 end
 
-# In application.js
+### In application.js
 //= require popup_gallery
 
-# In application.css
+### In application.css
 //= require popup_gallery
 
 usage

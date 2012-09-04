@@ -3,7 +3,7 @@ popup_gallery
 
 A Canvas powered Javascript image gallery
 
-installation
+Installation
 ------------
 
 ### In Gemfile
@@ -23,12 +23,24 @@ end
 ```javascript
 //= require popup_gallery
 ```
-usage
+
+Usage
 -----
+
 ```html
 <a href='large_image1.jpg' class='myimagelinkclass'><img src='small_image1.jpg' /></a>
 <a href='large_image2.jpg' class='myimagelinkclass'><img src='small_image2.jpg' /></a>
 ```
+
 ```javascript
 new PopupGallery('.myimagelinkclass')
 ```
+
+Events
+------
+
+* PopupGallery:shown
+* PopupGallery:hidden
+
+$(document).bind('PopupGallery:shown', function(){ alert('shown!') })
+$(document).bind('PopupGallery:hidden', function(){ alert('hidden!') })

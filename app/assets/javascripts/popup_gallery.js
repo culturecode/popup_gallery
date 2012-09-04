@@ -336,6 +336,7 @@ function PopupGallery(gallerySelector){
             
             // Start the main render loop
             _renderInterval = setInterval(_renderCanvas, 1000/options.fps);
+            $(document).trigger('PopupGallery:shown')
         }
     }
 
@@ -348,6 +349,7 @@ function PopupGallery(gallerySelector){
         overlay.fadeOut(170);
         visible = false;
         //_updateWindowLocation();
+        $(document).trigger('PopupGallery:hidden')
     }
 
     // CANVAS FUNCTIONS

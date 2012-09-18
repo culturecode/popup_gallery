@@ -77,7 +77,7 @@ function PopupGallery(gallerySelector){
             title:     trigger.data('title') || trigger.attr('title'),
             copyright: trigger.data('copyright'),
             sources:   [{width: 800, height:600, href: trigger.data('preview') || trigger.attr('href')}, {width: 1600, height: 1200, href: trigger.data('full') || trigger.attr('href')}],
-            thumbnail: $('<img class="thumbnail" />').attr('src', trigger.data('thumbnail') || trigger.find('img').attr('src'))
+            thumbnail: $('<img />').attr('src', trigger.data('thumbnail') || trigger.find('img').attr('src'))
         }
         images.push(metadata);
         carouselImages.append(metadata.thumbnail);

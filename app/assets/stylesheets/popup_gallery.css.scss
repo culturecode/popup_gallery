@@ -2,6 +2,12 @@ $drag-handle-diameter: 18px;
 
 .pg_overlay{
     background: image_url("popup_gallery_bg.png") repeat #C7C7C7;
+
+    // Prevent accidental text selection
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
 }
 .pg_header_container{
     font-size: 16px;

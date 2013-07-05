@@ -103,11 +103,26 @@ function PopupGallery(gallerySelector){
     exitButton.click(_hideOverlay);
 
     // Close the overlay if the user presses ESC
-    $(window).keyup(function(event){
-        if (event.keyCode == 27 && visible){
-            _hideOverlay();                    
+    $(window).keydown(function(event){
+        if (visible && !event.altKey && !event.shiftKey && !event.ctrlKey && !event.metaKey){
+            event.stopPropagation()
+            if (event.keyCode == 27){
+                _hideOverlay();
+            } else if (event.keyCode == 39 && currentIndex < images.length - 1) {
+                _showImageAt(currentIndex+1)
+            } else if (event.keyCode == 37 && currentIndex > 0) {
+                _showImageAt(currentIndex-1)
+            } else if (event.keyCode == 38) {
+                setZoom(currentZoom * 1.1)
+            } else if (event.keyCode == 40) {
+                setZoom(currentZoom / 1.1)
+            }
         }
     });
+
+    $(window).keyup(function(event){
+        if (visible && !event.altKey && !event.shiftKey && !event.ctrlKey && !event.metaKey){ event.stopPropagation() }
+    });    
 
     // Drag events on canvas
     $(canvas).mousedown(_startCanvasDragHandler);
@@ -330,6 +345,7 @@ function PopupGallery(gallerySelector){
     // Shows the overlay
     function _showOverlay(index){
         if (!visible){
+            $('html').css('overflow', 'hidden') // Crop the window so it doesn't scroll since some browsers scroll even though we're capturing the scroll event
             overlay.fadeIn(200)
             
             visible = true;
@@ -346,6 +362,7 @@ function PopupGallery(gallerySelector){
         clearInterval(_renderInterval);
         
         // Hide the window
+        $('html').css('overflow', '') // UnCrop the window
         overlay.fadeOut(170);
         visible = false;
         //_updateWindowLocation();

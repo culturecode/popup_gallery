@@ -10,10 +10,13 @@ $drag-handle-diameter: 18px;
     user-select: none;    
 }
 .pg_header_container{
+    width: 100%; 
+    position: absolute; 
+    top: 0;
     font-size: 16px;
     min-height: 1em;
     z-index: 1;
-    color: white;    
+    color: white;
 }
 .pg_header{
     min-height: 1em;

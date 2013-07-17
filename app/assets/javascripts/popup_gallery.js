@@ -29,7 +29,7 @@ function PopupGallery(gallerySelector){
     // Init Elements
 
     var overlay          = $('<div class="pg_overlay" style="height: 100%; width: 100%; position:fixed; z-index: 1000000; top:0; left:0; display:none" />');
-    var headerContainer  = $('<div class="pg_header_container" style="width: 100%; position: absolute; top: 0" />');
+    var headerContainer  = $('<div class="pg_header_container" />');
     var header           = $('<div class="pg_header" />');
     var headerRight      = $('<div class="pg_header_right" />');    
     var title            = $('<span class="pg_title" />');

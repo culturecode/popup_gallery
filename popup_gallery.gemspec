@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", [">= 3.1", "< 4.1.0"]
+  s.add_dependency "rails", [">= 3.1", "< 5.0"]
   s.add_dependency "jquery-rails"
   s.add_dependency "jquery-ui-rails"
 end

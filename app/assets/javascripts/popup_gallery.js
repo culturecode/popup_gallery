@@ -1,4 +1,4 @@
-//= require jquery.ui.slider
+//= require jquery-ui/slider
 //= require jquery.mousewheel
 
 // TODO: Adjust max zoom to be 5x the size of the largest image (once the size is actually known)

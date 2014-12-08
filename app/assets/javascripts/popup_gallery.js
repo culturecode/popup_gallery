@@ -74,7 +74,7 @@ function PopupGallery(gallerySelector){
         trigger = $(trigger);
         var metadata = {
             trigger:   trigger,
-            title:     trigger.data('title') || trigger.attr('title'),
+            title:     trigger.data('title') || trigger.attr('title') || '&nbsp;',
             copyright: trigger.data('copyright'),
             sources:   [{width: 800, height:600, href: trigger.data('preview') || trigger.attr('href')}, {width: 1600, height: 1200, href: trigger.data('full') || trigger.attr('href')}],
             thumbnail: $('<img />').attr('src', trigger.data('thumbnail') || trigger.find('img').attr('src'))

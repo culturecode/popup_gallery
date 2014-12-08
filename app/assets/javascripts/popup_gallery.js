@@ -4,6 +4,21 @@
 // TODO: Adjust max zoom to be 5x the size of the largest image (once the size is actually known)
 // TODO: Don't hardcode image dimension hints
 
+// Holds handles to instantiated galleries
+var PopupGalleries = {}
+
+// Handle clicks on all popup gallery elements
+$(document).on('click', '[data-popup-gallery]', function(event){
+    var galleryId = $(this).data('popup-gallery')
+
+    if (!PopupGalleries[galleryId]) {
+        PopupGalleries[galleryId] = new PopupGallery('[data-popup-gallery=' + galleryId + ']')
+        this.imageClicked()
+    }
+
+    event.preventDefault()
+});
+
 function PopupGallery(gallerySelector){
     var options = {
         fps: 24 // Rate at which to perform redraw at if they are necessary
@@ -82,7 +97,8 @@ function PopupGallery(gallerySelector){
         images.push(metadata);
         carouselImages.append(metadata.thumbnail);
 
-        var imageClicked = function(event){showImage(index); event.preventDefault()};
+        trigger.get(0).imageClicked = function() { showImage(index) }
+        var imageClicked = function(event){showImage(index); event.preventDefault()}
         trigger.click(imageClicked)
         metadata.thumbnail.click(imageClicked)
     });

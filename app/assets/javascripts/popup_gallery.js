@@ -7,7 +7,7 @@
 function PopupGallery(gallerySelector){
     var options = {
         fps: 24 // Rate at which to perform redraw at if they are necessary
-    }    
+    }
     var maxZoomDelta    = 0.1      // How quickly the zoom can change
     var minZoom         = 0.75     // How far can we zoom out proportional to the viewport
     var maxZoom         = 5        // How far can we zoom in proportional to the viewport
@@ -31,7 +31,7 @@ function PopupGallery(gallerySelector){
     var overlay          = $('<div class="pg_overlay" style="height: 100%; width: 100%; position:fixed; z-index: 1000000; top:0; left:0; display:none" />');
     var headerContainer  = $('<div class="pg_header_container" />');
     var header           = $('<div class="pg_header" />');
-    var headerRight      = $('<div class="pg_header_right" />');    
+    var headerRight      = $('<div class="pg_header_right" />');
     var title            = $('<span class="pg_title" />');
     var headerShadow     = $('<div class="pg_header_shadow" />');
     var exitButton       = $('<span class="pg_exit_button" />');
@@ -48,7 +48,7 @@ function PopupGallery(gallerySelector){
     // If we're using the excanvas plugin, we need to init the context like so
     if (!canvas.getContext && window.G_vmlCanvasManager){
         G_vmlCanvasManager.initElement(canvas);
-    } 
+    }
     var ctx = canvas.getContext('2d');
 
     // Append elements
@@ -66,7 +66,7 @@ function PopupGallery(gallerySelector){
     overlay.append(viewWindow);
     overlay.append(copyright);
     overlay.append(loadingIndicator);
-    viewWindow.append(canvas)        
+    viewWindow.append(canvas)
     $(document.body).append(overlay);
 
     // Init the images
@@ -86,7 +86,7 @@ function PopupGallery(gallerySelector){
         trigger.click(imageClicked)
         metadata.thumbnail.click(imageClicked)
     });
-    
+
     // If we have more than one image, show the carousel
     if (images.length > 1){
         carousel.show();
@@ -98,7 +98,7 @@ function PopupGallery(gallerySelector){
     zoomRange.slider({min: minZoom, max: maxZoom, step: 0.1, slide: function(event, ui){ setZoom(ui.value)}});
 
     // OBSERVERS
-    
+
     // Close everything if the user clicks the exit button
     exitButton.click(_hideOverlay);
 
@@ -122,13 +122,13 @@ function PopupGallery(gallerySelector){
 
     $(window).keyup(function(event){
         if (visible && !event.altKey && !event.shiftKey && !event.ctrlKey && !event.metaKey){ event.stopPropagation() }
-    });    
+    });
 
     // Drag events on canvas
     $(canvas).mousedown(_startCanvasDragHandler);
     $(canvas).mousemove(_dragCanvasHandler);
-    $(canvas).mouseup(_endCanvasDragHandler); // Observe the window for mouse up so we don't missed the event when the user drags the canvas past the 
-        
+    $(canvas).mouseup(_endCanvasDragHandler); // Observe the window for mouse up so we don't missed the event when the user drags the canvas past the
+
     // Zoom in when double clicked
     $(canvas).dblclick(function(event){
         var mouse = _normalizedMousePosition(event);
@@ -142,7 +142,7 @@ function PopupGallery(gallerySelector){
     $(window).resize(function(){
         if (visible){
             _resizeCanvasToFit();
-            _redraw();                
+            _redraw();
         }
     });
 
@@ -168,13 +168,13 @@ function PopupGallery(gallerySelector){
         if (!currentImage.complete){
             return;
         }
-        
+
         // If no origin is give, just in into the center of the canvas
         if (!centerX || !centerY){
             centerX = canvas.width / 2 ;
             centerY = canvas.height / 2 ;
         }
-        
+
         // Bound the Zoom
         if (zoomLevel < minZoom){
             zoomLevel = minZoom;
@@ -222,7 +222,7 @@ function PopupGallery(gallerySelector){
         if (currentIndex == index){
             return;
         }
-        
+
         _showLoadingIndicator();
 
         // IE FIX
@@ -236,12 +236,12 @@ function PopupGallery(gallerySelector){
         currentIndex = index;
 
         currentImage = new Image();
-        
+
         // When the image is done loading, do this
         currentImage.onload = function(){
             // Disable the onload otherwise successive changes to the image when zooming will trigger the onload
             currentImage.onload = null;
-            
+
             // Check if we actually got an image
             if (currentImage.height == 0){
                 alert('Error loading image')
@@ -250,7 +250,7 @@ function PopupGallery(gallerySelector){
 
             // Reset the normalized mouse wheel delta so we don't retain 'momentum' from the previous image
             lastDelta = 0
-            
+
             // Zoom the image to fit the canvas
             imageScale = _getImageScaleToFit(currentImage);
             currentWidth = currentImage.width * imageScale;
@@ -258,14 +258,14 @@ function PopupGallery(gallerySelector){
             // Place the image in the center of the canvas
             _imageXOrigin = (canvas.width - currentWidth)/2;
             _imageYOrigin = (canvas.height - currentHeight)/2;
-            
+
             // Draw it
             currentZoom = 1
             _updateZoomHandle()
             _redraw();
             _hideLoadingIndicator();
         };
-                
+
         // Assign the src after we add the onload listener to avoid any race condition issue
         // Use the smallest image possible so we can show something right away
         _setSmallestSrcForCurrentImage();
@@ -281,14 +281,14 @@ function PopupGallery(gallerySelector){
 
         // Highlight the selected thumbnail
         images[index].thumbnail.addClass('selected');
-        
+
         // _updateWindowLocation();
     }
 
     function _updateZoomHandle(){
-        var percent = ((currentZoom - minZoom) / (maxZoom - minZoom) * 100).toFixed(0);        
+        var percent = ((currentZoom - minZoom) / (maxZoom - minZoom) * 100).toFixed(0);
         zoomReadout.html('Zoom ' + percent + '%');
-        zoomRange.slider({value: currentZoom});        
+        zoomRange.slider({value: currentZoom});
     }
 
 
@@ -321,7 +321,7 @@ function PopupGallery(gallerySelector){
     // Loads the image specified by href, and if when it is loaded it is still the best match for the desired image size, use it
     function _setCurrentImageWhenLoaded(href){
 
-        _showLoadingIndicator();        
+        _showLoadingIndicator();
         var image = new Image()
         image.onload = function(){
             image.onload = null;
@@ -347,9 +347,9 @@ function PopupGallery(gallerySelector){
         if (!visible){
             $('html').css('overflow', 'hidden') // Crop the window so it doesn't scroll since some browsers scroll even though we're capturing the scroll event
             overlay.fadeIn(200)
-            
+
             visible = true;
-            
+
             // Start the main render loop
             _renderInterval = setInterval(_renderCanvas, 1000/options.fps);
             $(document).trigger('PopupGallery:shown')
@@ -360,7 +360,7 @@ function PopupGallery(gallerySelector){
     function _hideOverlay(){
         // Stop the main render loop
         clearInterval(_renderInterval);
-        
+
         // Hide the window
         $('html').css('overflow', '') // UnCrop the window
         overlay.fadeOut(170);
@@ -385,7 +385,7 @@ function PopupGallery(gallerySelector){
     // Handles the beginning of a drag
     function _startCanvasDragHandler(){
         if (visible){
-            _dragging = true;        
+            _dragging = true;
         }
     }
 
@@ -394,7 +394,7 @@ function PopupGallery(gallerySelector){
         if (_dragging){
             // Get the mouse position.
             var mouse = _normalizedMousePosition(event);
-        
+
             // If we have a delta, move the image that much
             if (_lastX && _lastY){
 
@@ -433,7 +433,7 @@ function PopupGallery(gallerySelector){
 
     // Handles the end of a drag
     function _endCanvasDragHandler(){
-        if (visible){        
+        if (visible){
             _dragging = false;
             _lastX = null;
             _lastY = null;
@@ -441,7 +441,7 @@ function PopupGallery(gallerySelector){
     }
 
     function _mouseWheelHandler(event, delta, deltaX, deltaY){
-        if (visible){                    
+        if (visible){
             var mousex = event.clientX - canvas.offsetLeft;
             var mousey = event.clientY - canvas.offsetTop;
 
@@ -462,7 +462,7 @@ function PopupGallery(gallerySelector){
         if (_redrawRequired){
             _redrawRequired = false;
             // Scale the image and place it at the current position
-            _clearCanvas();            
+            _clearCanvas();
             ctx.drawImage(currentImage, _imageXOrigin, _imageYOrigin, currentWidth, currentHeight);
         }
     }

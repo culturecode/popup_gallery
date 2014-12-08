@@ -7,11 +7,11 @@ $drag-handle-diameter: 18px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    user-select: none;    
+    user-select: none;
 }
 .pg_header_container{
-    width: 100%; 
-    position: absolute; 
+    width: 100%;
+    position: absolute;
     top: 0;
     font-size: 16px;
     min-height: 1em;
@@ -91,7 +91,7 @@ $drag-handle-diameter: 18px;
     overflow: auto;
     padding: 0 1em;
     white-space: nowrap;
-    
+
     img{
         height: 100px;
 	    padding: 2px;
@@ -99,7 +99,7 @@ $drag-handle-diameter: 18px;
 	    margin: 2px;
 	    border: 1px solid #E0E0E0;
 	    border-bottom-color:  #AAAAAA;
-	    border-radius: 2px;        
+	    border-radius: 2px;
         cursor: pointer;
         vertical-align: middle;
     }
@@ -124,7 +124,7 @@ $drag-handle-diameter: 18px;
     color: rgba(0, 0, 0, 0.5);
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
     font-size: 14px;
-    
+
     img{
         vertical-align: middle;
     }
